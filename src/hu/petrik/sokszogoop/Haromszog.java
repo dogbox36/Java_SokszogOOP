@@ -70,7 +70,7 @@ public class Haromszog extends Sokszog {
 
     @Override
     public String toString() {
-        // TODO: toString elkészítése
-        return "";
+        return String.format("Háromszög: a = %f - b = %f - c = %f - K = %f - T = %f",
+                this.getA(), this.getB(), this.getC(), this.getKerulet(), this.getTerulet());
     }
 }
