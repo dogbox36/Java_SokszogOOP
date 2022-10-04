@@ -16,6 +16,7 @@ public class Teglalap extends Sokszog {
         this.b = b;
     }
 
+    @Override
     public double getKerulet() {
         /*
         Jelenleg super.getA() is ugyan azt eredményezi
@@ -23,13 +24,14 @@ public class Teglalap extends Sokszog {
         return 2 * (this.getA() + this.b);
     }
 
+    @Override
     public double getTerulet() {
         return this.getA() * this.b;
     }
 
     @Override
     public String toString() {
-        return String.format("Téglalap: a = %f - b = %f - K = %f - T = %f",
-                this.getA(), this.getB(), this.getKerulet(), this. getTerulet());
+        return String.format("Téglalap: a = %-10.3f b = %-10.3f %s",
+                this.getA(), this.getB(), super.toString());
     }
 }
