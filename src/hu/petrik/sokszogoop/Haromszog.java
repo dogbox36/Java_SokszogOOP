@@ -4,6 +4,21 @@ public class Haromszog extends Sokszog {
     private double b;
     private double c;
 
+    public Haromszog() {
+        super(getVeletlenOldal());
+        this.b = getVeletlenOldal();
+        this.c = getVeletlenOldal();
+        while (!isSzerkesztheto()){
+            super.setA(getVeletlenOldal());
+            this.b = getVeletlenOldal();
+            this.c = getVeletlenOldal();
+        }
+    }
+
+    private static double getVeletlenOldal() {
+        return Math.random() * 10 + 5;
+    }
+
     public Haromszog(double a, double b, double c) {
         super(a);
         this.b = b;
