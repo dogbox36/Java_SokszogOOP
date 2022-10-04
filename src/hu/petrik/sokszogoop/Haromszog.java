@@ -8,6 +8,9 @@ public class Haromszog extends Sokszog {
         super(a);
         this.b = b;
         this.c = c;
+        if (!this.isSzerkesztheto()){
+            throw new IllegalArgumentException("A megadott háromszög nem szerkeszthető");
+        }
     }
 
     public double getB() {
@@ -16,6 +19,9 @@ public class Haromszog extends Sokszog {
 
     public void setB(double b) {
         this.b = b;
+        if (!this.isSzerkesztheto()){
+            throw new IllegalArgumentException("A megadott háromszög nem szerkeszthető");
+        }
     }
 
     public double getC() {
@@ -24,6 +30,17 @@ public class Haromszog extends Sokszog {
 
     public void setC(double c) {
         this.c = c;
+        if (!this.isSzerkesztheto()){
+            throw new IllegalArgumentException("A megadott háromszög nem szerkeszthető");
+        }
+    }
+
+    @Override
+    public void setA(double a) {
+        super.setA(a);
+        if (!this.isSzerkesztheto()){
+            throw new IllegalArgumentException("A megadott háromszög nem szerkeszthető");
+        }
     }
 
     private boolean isSzerkesztheto() {
