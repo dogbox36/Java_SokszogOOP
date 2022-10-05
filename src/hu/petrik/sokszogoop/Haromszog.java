@@ -1,41 +1,30 @@
 package hu.petrik.sokszogoop;
 
-public class Haromszog extends Sokszog {
+public class Haromszog extends Sokszog{
     private double b;
     private double c;
 
-    public Haromszog() {
-        super(getVeletlenOldal());
-        this.b = getVeletlenOldal();
-        this.c = getVeletlenOldal();
-        while (!isSzerkesztheto()){
-            super.setA(getVeletlenOldal());
-            this.b = getVeletlenOldal();
-            this.c = getVeletlenOldal();
+    public Haromszog(){
+        super(getVeletlenOld());
+        this.b = getVeletlenOld();
+        this.c = getVeletlenOld();
+        while (!this.isSzerkezthető()){
+            super.setA(getVeletlenOld());
+            this.b = getVeletlenOld();
+            this.c = getVeletlenOld();
         }
     }
 
-    private static double getVeletlenOldal() {
-        return Math.random() * 10 + 5;
+    private static double getVeletlenOld() {
+        return Math.random() *10 + 5;
     }
 
-    public Haromszog(double a, double b, double c) {
+    public Haromszog(double a, double b, double c){
         super(a);
         this.b = b;
         this.c = c;
-        if (!this.isSzerkesztheto()){
-            throw new IllegalArgumentException("A megadott háromszög nem szerkeszthető");
-        }
-    }
-
-    public double getB() {
-        return b;
-    }
-
-    public void setB(double b) {
-        this.b = b;
-        if (!this.isSzerkesztheto()){
-            throw new IllegalArgumentException("A megadott háromszög nem szerkeszthető");
+        if (!this.isSzerkezthető()){
+            throw new IllegalArgumentException("A háromszög nem megfelelő");
         }
     }
 
@@ -45,49 +34,50 @@ public class Haromszog extends Sokszog {
 
     public void setC(double c) {
         this.c = c;
-        if (!this.isSzerkesztheto()){
-            throw new IllegalArgumentException("A megadott háromszög nem szerkeszthető");
+        if (!this.isSzerkezthető()){
+            throw new IllegalArgumentException("A háromszög nem megfelelő");
         }
     }
 
+    public double getB() {
+        return b;
+    }
+
+    public void setB(double b) {
+        this.b = b;
+        if (!this.isSzerkezthető()){
+            throw new IllegalArgumentException("A háromszög nem megfelelő");
+        }
+    }
     @Override
-    public void setA(double a) {
+    public void setA(Double a) {
         super.setA(a);
-        if (!this.isSzerkesztheto()){
-            throw new IllegalArgumentException("A megadott háromszög nem szerkeszthető");
+        if (!this.isSzerkezthető()){
+            throw new IllegalArgumentException("A háromszög nem megfelelő");
         }
     }
 
-    private boolean isSzerkesztheto() {
-        boolean szerkesztheto = true;
-
-        if ((this.getA() + this.getB()) <= this.getC() ||
-            (this.getA() + this.getC()) <= this.getB() ||
-            (this.getB() + this.getC()) <= this.getA()) {
-            szerkesztheto = false;
+    private boolean isSzerkezthető(){
+        boolean szerkeztheto = true;
+        if(this.getA()+this.b <= this.c || this.getA()+this.c <= this.b || this.b + this.c <= this.getA()){
+            szerkeztheto = false;
         }
-
-        return szerkesztheto;
+        return szerkeztheto;
     }
-
     @Override
-    public double getKerulet() {
-        return this.getA() + this.getB() + this.getC();
+    public double getK() {
+        return this.getA()+this.b+this.c;
     }
 
     private double getS() {
-        return getKerulet() / 2;
+        return this.getK() /2;
     }
-
     @Override
-    public double getTerulet() {
-        return Math.sqrt(this.getS() * (this.getS() - this.getA()) *
-                (this.getS() - this.getB()) * (this.getS() - this.getC()));
+    public double getT() {
+        return Math.sqrt(this.getS() * (this.getS() - this.getA()) * (this.getS() - this.b) * (this.getS() - this.c));
     }
-
     @Override
     public String toString() {
-        return String.format("Háromszög: a =  %-10.3f b =  %-10.3f c = %-10.3f %s",
-                this.getA(), this.getB(), this.getC(), super.toString());
+        return String.format("Háromszög: a = %.3f - b = %.3f - c = %.3f - %s", this.getA(), this.b,this.c,super.toString());
     }
 }
